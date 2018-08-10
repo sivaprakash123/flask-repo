@@ -62,8 +62,6 @@ router.get('/open/reports/*', function (req, res) {
 
 router.post('/protected/reports/lmereport', function (req, res) {
     console.log(req.body);
-    console.log(req.data);
-    console.log(req);
 
     var excel = require('excel4node');
 

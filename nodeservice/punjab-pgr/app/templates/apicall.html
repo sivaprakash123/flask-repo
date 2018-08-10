@@ -4,7 +4,7 @@
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     </head>
     <body>
-        <div id='report'>Please download the report</div>
+        <div id='report'>No report available for your user type</div>
         <script>
             var access_token = localStorage.getItem("token");
             let strUserInfo = localStorage.getItem("user-info");
@@ -34,10 +34,7 @@
                     headers: { 'Accept': 'application/vnd.ms-excel' },
                     data: {
                         RequestInfo: {
-                            "auth_token": auth_token
-                        },
-                        requestInfo: {
-                            "auth_token": auth_token
+                            "authToken": access_token
                         }
                     }
                   }).then((response) => {
