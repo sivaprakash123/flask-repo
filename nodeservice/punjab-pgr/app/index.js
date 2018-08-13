@@ -56,12 +56,16 @@ WHERE eg_pgr_service.status = 'assigned' AND servicerequestid IN (select DISTINC
 IN (select max("when") from eg_pgr_action where assignee NOTNULL group by businesskey) AND assignee = $1);`
 
 router.get('/open/reports/*', function (req, res) {
-    console.log(req);
     res.sendFile(path.join(__dirname+'/templates/apicall.html'));
 });
 
 router.post('/protected/reports/lmereport', function (req, res) {
-    console.log(req.body);
+    let userId = String(req.body.RequestInfo.userInfo.id);
+
+    console.log("User id is", userId);
+    pg.any(query, userId).then(function(data) {
+        console.log(data)
+    })
 
     var excel = require('excel4node');
 
