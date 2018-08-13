@@ -63,7 +63,7 @@ router.post('/protected/reports/lmereport', function (req, res) {
     let userId = String(req.body.RequestInfo.userInfo.id);
 
     console.log("User id is", userId);
-    pg.any(query, userId).then(function(data) {
+    db.any(query, userId).then(function(data) {
         console.log(data)
     })
 
