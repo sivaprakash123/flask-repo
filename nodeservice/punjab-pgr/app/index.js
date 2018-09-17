@@ -9,9 +9,10 @@ const {
 
 var app = express();
 const PT_DEBUG_MODE = Boolean(process.env.PT_DEBUG_MODE) || false;
-const PT_HOST = process.env.PT_HOST
+const PT_DEMAND_HOST = process.env.PT_DEMAND_HOST
+const MDMS_HOST = process.env.MDMS_HOST
 
-if (PT_HOST === undefined) {
+if (PT_DEMAND_HOST === undefined) {
     throw Error("PT_HOST environment variable needs to be configured to run this")
 }
 
@@ -148,7 +149,7 @@ function calculateNewFireCess(taxHeads, firecess_percent, taxField, taxHeadCodeF
 
 async function findDemandForConsumerCode(consumerCode, tenantId, service, RequestInfo) {
     let demandSearchResponse = await request.post({
-        url: PT_HOST + "/billing-service/demand/_search?tenantId=" + tenantId +
+        url: PT_DEMAND_HOST + "/billing-service/demand/_search?tenantId=" + tenantId +
             "&consumerCode=" + consumerCode + "&businessService=" + service,
         body: {
             RequestInfo
@@ -161,7 +162,7 @@ async function findDemandForConsumerCode(consumerCode, tenantId, service, Reques
 
 async function updateDemand(demands, RequestInfo) {
     let demandUpdateResponse = await request.post({
-        url: PT_HOST + "/billing-service/demand/_update",
+        url: PT_DEMAND_HOST + "/billing-service/demand/_update",
         body: {
             RequestInfo,
             "Demands": demands
