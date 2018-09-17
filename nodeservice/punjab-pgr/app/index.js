@@ -259,9 +259,10 @@ async function _createAndUpdateTaxProcessor(request, response) {
 }
 
 async function _createAndUpdateRequestHandler(req, res) {
-    let request = req.body.Request
-    let response = req.body.Response
-    console.log(req.body)
+    let request = JSON.parse(req.body.request)
+    let response = JSON.parse(req.body.response)
+    console.log(request, response)
+
     let updatedResponse = await _createAndUpdateTaxProcessor(request, response)
     res.json(updatedResponse);
 }
@@ -271,9 +272,9 @@ router.post('/protected/punjab-pt/property/_create', asyncMiddleware(_createAndU
 router.post('/protected/punjab-pt/property/_update', asyncMiddleware(_createAndUpdateRequestHandler))
 
 router.post('/protected/punjab-pt/pt-calculator-v2/_estimate', function (req, res) {
-    let request = req.body.Request
-    let response = req.body.Response
-    console.log(req.body)
+    let request = JSON.parse(req.body.request)
+    let response = JSON.parse(req.body.response)
+    console.log(request, response)
 
     let updatedResponse = _estimateTaxProcessor(request, response)
     res.json(updatedResponse);
