@@ -96,7 +96,7 @@ function getFireCessPercentage(propertyDetails) {
 
     let propertyUsageCategoryMajor = propertyDetails["usageCategoryMajor"]
     let units = propertyDetails["units"]
-    let propertyAttributes = propertyDetails["additionalDetails"]["propertyAttributes"]
+    let propertyAttributes = propertyDetails["additionalDetails"]
     let unitSet = new Set()
 
     for (unit of units) {
@@ -113,12 +113,12 @@ function getFireCessPercentage(propertyDetails) {
         firecess_category_major = 5.0
     }
 
-    if (propertyAttributes.HEIGHTABOVE36FEET && propertyAttributes.HEIGHTABOVE36FEET.toString() == "true") {
+    if (propertyAttributes.heightAbove36Feet && propertyAttributes.heightAbove36Feet.toString() == "true") {
         // height is above 36 feet
         firecess_building_height = 2.0
     }
 
-    if (propertyAttributes.INFLAMMABLE && propertyAttributes.INFLAMMABLE.toString() == "true") {
+    if (propertyAttributes.inflammable && propertyAttributes.inflammable.toString() == "true") {
         // height is above 36 feet
         firecess_inflammable = 10.0
     }
