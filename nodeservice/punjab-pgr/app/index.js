@@ -269,6 +269,11 @@ function getUpdateTaxSummary(calculation, newTaxAmount, taxHeadCodeField, taxAmo
     rebate = round(rebate, 2)
 
     let totalAmount = taxAmount + penalty - rebate - exemption
+
+    console.log({
+        taxAmount, penalty, rebate, exemption, totalAmount
+    })
+
     totalAmount = round(totalAmount, 2)
     let fractionAmount = totalAmount - Math.trunc(totalAmount)
     let newCeilingTax = false
