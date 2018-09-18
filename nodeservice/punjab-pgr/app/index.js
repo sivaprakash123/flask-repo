@@ -241,6 +241,9 @@ function getUpdateTaxSummary(calculation, newTaxAmount, taxHeadCodeField, taxAmo
                 case "PT_DECIMAL_CEILING_DEBIT":
                     ceilingTaxHead = taxHead
                     break
+                case "PT_ADVANCE_CARRYFORWARD":
+                    exemption += taxHead[taxAmountField]
+                    break
                 default:
                     switch (taxHead.category) {
                         case "PENALTY":
