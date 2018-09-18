@@ -251,6 +251,7 @@ function getUpdateTaxSummary(calculation, newTaxAmount, taxHeadCodeField, taxAmo
                             break
                         case "REBATE":
                             rebate += taxHead[taxAmountField]
+                            break
                         case "EXEMPTION":
                             exemption += taxHead[taxAmountField]
                             break
