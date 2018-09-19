@@ -368,6 +368,9 @@ async function _createAndUpdateTaxProcessor(request, response) {
         for (demandDetail of demandSearchResponse["Demands"][0]["demandDetails"]) {
             if (demandDetail.taxHeadMasterCode == "PT_FIRE_CESS") {
                 demandDetail.taxAmount = taxes.firecessTaxHead.estimateAmount
+            } if (demandDetail.taxHeadMasterCode == "PT_DECIMAL_CEILING_DEBIT" || demandDetail.taxHeadMasterCode == "PT_DECIMAL_CEILING_DEBIT") {
+                demandDetail.taxHeadMasterCode = taxes.ceilingTaxHead.taxHeadCode
+                demandDetail.taxAmount = taxes.ceilingTaxHead.estimateAmount
             }
         }
 
@@ -399,11 +402,13 @@ async function _createAndUpdateRequestHandler(req, res) {
     let response = JSON.parse(req.body.response)
     // let request = req.body.request
     // let response = req.body.response
-
-    console.log(request, response)
-
+    console.log("----------------- inside _createAndUpdateRequestHandler --------------")
+    console.log("Existing Request is", JSON.stringify(request, null, 2))
+    console.log("Existing Response is", JSON.stringify(response, null, 2))
     let updatedResponse = await _createAndUpdateTaxProcessor(request, response)
+    console.log("Updated Response is", JSON.stringify(updatedResponse, null, 2))
     res.json(updatedResponse);
+    console.log("----------------- finished _createAndUpdateRequestHandler --------------")
 }
 
 router.post('/protected/punjab-pt/property/_create', asyncMiddleware(_createAndUpdateRequestHandler))
@@ -413,12 +418,15 @@ router.post('/protected/punjab-pt/property/_update', asyncMiddleware(_createAndU
 router.post('/protected/punjab-pt/pt-calculator-v2/_estimate', function (req, res) {
     let request = JSON.parse(req.body.request)
     let response = JSON.parse(req.body.response)
-    // let request = req.body.request
-    // let response = req.body.response
-    console.log(request, response)
+
+    console.log("----------------- inside _estimate --------------")
+    console.log("Existing Request is", JSON.stringify(request, null, 2))
+    console.log("Existing Response is", JSON.stringify(response, null, 2))
 
     let updatedResponse = _estimateTaxProcessor(request, response)
+    console.log("Updated Response is", JSON.stringify(updatedResponse, null, 2))
     res.json(updatedResponse);
+    console.log("----------------- finished _estimate --------------")
 })
 
 app.listen(8000, () => {
