@@ -75,7 +75,6 @@ const connectionString = {
     password: process.env.DB_PASSWORD || 'password'
 };
 
-console.log(connectionString);
 // var connectionString = 'postgres://localhost:5432/egov_prod_db';
 var db = pgp(connectionString);
 var path = require('path');
@@ -200,11 +199,8 @@ function _estimateTaxProcessor(request, response) {
     let index = 0;
     for (let calc of request["CalculationCriteria"]) {
         let fireCessPercentage = getFireCessPercentage(calc["property"]["propertyDetails"][0])
-        console.log(fireCessPercentage)
 
         let updateFirecessAmount = calculateNewFireCess(response["Calculation"][0]["taxHeadEstimates"], fireCessPercentage.firecess, "estimateAmount", "taxHeadCode")
-        console.log(updateFirecessAmount)
-
         let taxes = getUpdateTaxSummary(response["Calculation"][index], updateFirecessAmount, "taxHeadCode", "estimateAmount")
 
         response["Calculation"][index]["totalAmount"] = taxes.totalAmount
@@ -274,9 +270,6 @@ function getUpdateTaxSummary(calculation, newTaxAmount, taxHeadCodeField, taxAmo
 
     let totalAmount = taxAmount + penalty - rebate - exemption
 
-    console.log({
-        taxAmount, penalty, rebate, exemption, totalAmount
-    })
 
     totalAmount = round(totalAmount, 2)
     let fractionAmount = totalAmount - Math.trunc(totalAmount)
@@ -312,6 +305,10 @@ function getUpdateTaxSummary(calculation, newTaxAmount, taxHeadCodeField, taxAmo
         }
     }
 
+    console.log({
+        taxAmount, penalty, rebate, exemption, totalAmount, fractionAmount, ceilingTaxHead
+    })
+
     return {
         taxHeads,
         rebate,
@@ -337,10 +334,9 @@ async function _createAndUpdateTaxProcessor(request, response) {
         let tenantId = reqProperty["tenantId"]
 
         let demandSearchResponse = await findDemandForConsumerCode(consumerCode, tenantId, service, request["RequestInfo"])
-        console.log(demandSearchResponse);
 
         let fireCessPercentage = getFireCessPercentage(reqProperty["propertyDetails"][0])
-        console.log(fireCessPercentage);
+
         if (PT_DEBUG_MODE) {
             demandSearchResponse["Demands"][0]["firecess"] = fireCessPercentage
         }
@@ -349,8 +345,6 @@ async function _createAndUpdateTaxProcessor(request, response) {
 
         let taxes = getUpdateTaxSummary(calc,
             updateFirecessTax, "taxHeadCode", "estimateAmount")
-
-        console.log(demandSearchResponse["Demands"])
 
         if (taxes.newCeilingTax) {
             let firstDemand = demandSearchResponse["Demands"][0]["demandDetails"][0]
@@ -375,7 +369,6 @@ async function _createAndUpdateTaxProcessor(request, response) {
         }
 
         let demandUpdateResponse = await updateDemand(demandSearchResponse["Demands"], request["RequestInfo"])
-        console.log(demandUpdateResponse)
 
         // let updateTaxHeads = []
 
