@@ -334,7 +334,8 @@ async function _createAndUpdateTaxProcessor(request, response) {
         let tenantId = reqProperty["tenantId"]
 
         let demandSearchResponse = await findDemandForConsumerCode(consumerCode, tenantId, service, request["RequestInfo"])
-
+        console.log("Existing demand is ", JSON.stringify(demandSearchResponse["Demands"], null, 2))
+        
         let fireCessPercentage = getFireCessPercentage(reqProperty["propertyDetails"][0])
 
         if (PT_DEBUG_MODE) {
@@ -368,6 +369,7 @@ async function _createAndUpdateTaxProcessor(request, response) {
             }
         }
 
+        console.log("Updating demand to ", JSON.stringify(demandSearchResponse["Demands"], null, 2))
         let demandUpdateResponse = await updateDemand(demandSearchResponse["Demands"], request["RequestInfo"])
 
         // let updateTaxHeads = []
