@@ -1,0 +1,42 @@
+[
+  {
+    "Type": "Sprint",
+    "Name": "Sprint 27",
+    "PlannedDeploymentDate": "2025-01-01T00:00:00Z",
+    "DeploymentDate": "2025-01-09T00:00:00Z",
+    "Description": "Sprint 27 Deployment Guide",
+    "DelayDays": 8
+  },
+  {
+    "Type": "Sprint",
+    "Name": "Sprint 28",
+    "PlannedDeploymentDate": "2025-02-05T00:00:00Z",
+    "DeploymentDate": "2025-02-09T00:00:00Z",
+    "Description": "Sprint 28 Deployment Guide",
+    "DelayDays": 4
+  },
+  {
+    "Type": "Sprint",
+    "Name": "Sprint 29",
+    "PlannedDeploymentDate": "2025-03-02T00:00:00Z",
+    "DeploymentDate": "2025-03-20T00:00:00Z",
+    "Description": "Sprint 29 Deployment Guide",
+    "DelayDays": 18
+  },
+  {
+    "Type": "Hotfix",
+    "Name": "Hotfix 29.1",
+    "PlannedDeploymentDate": "2025-04-15T00:00:00Z",
+    "DeploymentDate": "2025-04-16T00:00:00Z",
+    "Description": "Hotfix 29.1 Deployment Guide",
+    "DelayDays": 1
+  },
+  {
+    "Type": "Hotfix",
+    "Name": "Hotfix 29.2",
+    "PlannedDeploymentDate": "2025-05-16T00:00:00Z",
+    "DeploymentDate": "2025-05-18T00:00:00Z",
+    "Description": "Hotfix 29.2 Deployment Guide",
+    "DelayDays": 2
+  }
+]
