@@ -4,6 +4,8 @@
     "Name": "Sprint 27",
     "PlannedDeploymentDate": "2025-01-01T00:00:00Z",
     "DeploymentDate": "2025-01-09T00:00:00Z",
+    "PlannedTimestamp": parseDate("2025-01-01T00:00:00Z"),
+    "DeploymentTimestamp": parseDate("2025-01-09T00:00:00Z"),    
     "Description": "Sprint 27 Deployment Guide",
     "DelayDays": 8
   },
@@ -12,6 +14,8 @@
     "Name": "Sprint 28",
     "PlannedDeploymentDate": "2025-02-05T00:00:00Z",
     "DeploymentDate": "2025-02-09T00:00:00Z",
+    "PlannedTimestamp": parseDate("2025-02-05T00:00:00Z"),
+    "DeploymentTimestamp": parseDate("2025-02-09T00:00:00Z"),    
     "Description": "Sprint 28 Deployment Guide",
     "DelayDays": 4
   },
